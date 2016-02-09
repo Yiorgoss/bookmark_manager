@@ -1,7 +1,9 @@
 require 'capybara/rspec'
 require './app/app.rb'
+require 'database_cleaner'
 
-# ENV['RACK_ENV'] = 'test'
+ENV['RACK_ENV'] = 'test'
+
 #
 # require File.join(File.dirname(__FILE__), '..', 'app.rb')
 #
@@ -53,6 +55,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+<<<<<<< HEAD
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
@@ -106,4 +109,24 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+=======
+RSpec.configure do |config|
+  # Everything in this block runs once before all the tests run
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  # Everything in this block runs once before each individual test
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  # Everything in this block runs once after each individual test
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  end
+>>>>>>> day-two
 end
