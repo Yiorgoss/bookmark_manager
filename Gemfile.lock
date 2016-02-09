@@ -126,13 +126,9 @@ PLATFORMS
 DEPENDENCIES
   capybara
   data_mapper
-<<<<<<< HEAD
-  dm-postgres-adapter
-=======
   database_cleaner
   dm-postgres-adapter
   dm-transactions
->>>>>>> day-two
   rspec
   rspec-sinatra
   selenium-webdriver
