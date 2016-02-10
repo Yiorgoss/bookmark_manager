@@ -6,6 +6,7 @@ class BookmarkManager < Sinatra::Base
   set :session_secret, "super secret"
 
   ENV['RACK_ENV'] ||= 'development'
+  # set :environment, :development
 
   get '/' do
     redirect '/links'
@@ -21,10 +22,9 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/links' do
-    link = Link.create(:title => params[:title], :url => params[:url])
-    params[:tag].split(" ").each do |tag|
-    link.tags << Tag.first_or_create(name: tag)
-    end
+    link = Link.new(:title => params[:title], :url => params[:url])
+    tag = Tag.create(:name => params[:tag])
+    link.tags << tag
     link.save
     redirect '/links'
   end
