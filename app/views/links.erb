@@ -1,0 +1,24 @@
+<head>
+</head>
+
+<body>
+  <h1>Links</h1>
+  <ul id='links'>
+    <% @links.each do |link| %>
+      <li>
+        Title: <%= link.title %>
+        URL: <%= link.url %>
+        <% @tags.each do |tags| %>
+        Tags: <%= tags.tag %>
+        <% end %>
+      </li>
+    <% end %>
+
+
+
+  </ul>
+
+  <form action='/links/new'>
+    <input type="submit" value="Add link">
+  </form>
+</body>

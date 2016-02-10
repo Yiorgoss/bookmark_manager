@@ -2,15 +2,14 @@
 source "https://rubygems.org"
 ruby '2.2.3'
 
-gem 'sinatra'
-gem 'shotgun'
-gem 'capybara'
-gem 'selenium-webdriver'
-gem 'rspec-sinatra'
+# gem "rails"
+
 gem 'rspec'
+gem 'capybara'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
+gem 'rspec-sinatra'
+gem 'sinatra'
+gem 'rack'
 gem 'database_cleaner'
-gem 'dm-transactions'
 
-# gem "rails"

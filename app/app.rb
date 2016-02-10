@@ -1,29 +1,29 @@
-
-
-ENV["RACK_ENV"] ||= "development"
-
 require 'sinatra/base'
-require_relative 'models/link'
-
+require_relative 'models/link.rb'
 
 class BookmarkManager < Sinatra::Base
 
+  ENV['RACK_ENV'] ||= 'development'
+  # set :environment, :development
+
   get '/' do
-    redirect to('/links')
+    redirect '/links'
   end
 
   get '/links' do
     @links = Link.all
-    erb :'links/index'
+    @tags = Tag.all
+    erb (:links)
   end
 
   get '/links/new' do
-    erb :'links/new'
+    erb (:new_link)
   end
 
   post '/links' do
-    Link.create(url: params[:url], title: params[:title])
-    redirect to('/links')
+    Link.create(:title => params[:title], :url => params[:url])
+    Tag.create(:tag => params[:tag])
+    redirect '/links'
   end
 
   run! if app_file == $0
