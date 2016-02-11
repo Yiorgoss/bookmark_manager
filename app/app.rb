@@ -1,3 +1,6 @@
+
+ENV['RACK_ENV'] ||= 'development'
+
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
 
@@ -5,7 +8,6 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
   set :session_secret, "super secret"
 
-  ENV['RACK_ENV'] ||= 'development'
   # set :environment, :development
 
   get '/' do
